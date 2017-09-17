@@ -23,5 +23,6 @@ Route::get('/list', 'Contact@showList')->name('contactList');
 
 Route::get('/contact/{id}', 'Contact@single')->name('singleContact');
 Route::get('/edit/{id}', 'Contact@edit')->name('contactEdit');
+Route::post('/edit', 'Contact@editPost')->name('contactEditPost');
 Route::get('/new', 'Contact@add')->name('contactNew');
 Route::post('/new', 'Contact@addPost')->name('contactNewPost');

@@ -41,8 +41,8 @@ class Contact extends Controller
 
     public function editPost(Request $request)
     {
-        //var_dump($request->input("name"));die();
-        $contact = \App\Contact()->find($request->id);
+        $inputId = $request->input("id");
+        $contact = \App\Contact::find($inputId) ;
         $contact->name=$request->input("name");
         $contact->surname=$request->input("surname");
         $contact->phone=$request->input("phone");
