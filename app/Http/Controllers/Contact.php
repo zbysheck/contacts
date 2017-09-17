@@ -42,7 +42,7 @@ class Contact extends Controller
     public function editPost(Request $request)
     {
         $inputId = $request->input("id");
-        $contact = \App\Contact::find($inputId) ;
+        $contact = \App\Contact::find($inputId);
         $contact->name=$request->input("name");
         $contact->surname=$request->input("surname");
         $contact->phone=$request->input("phone");

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="/css/material.min.css">
+    <script src="/js/jquery.min.js"></script>
     <style>
         #new-contact {
             position: fixed;
@@ -71,13 +72,16 @@
             <span class="mdl-layout-title">Contacts</span>
             <div class="mdl-layout-spacer"></div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
-                <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
-                    <i class="material-icons">search</i>
-                </label>
-                <div class="mdl-textfield__expandable-holder">
-                    <input class="mdl-textfield__input" type="text" id="search">
-                    <label class="mdl-textfield__label" for="search">Enter your query...</label>
-                </div>
+                @if (Route::has('login'))
+                    <div class="top-right links">
+                        @auth
+                        <a href="{{ url('/list') }}">Home</a>
+                        @else
+                            <a href="{{ route('login') }}">Login</a>
+                            <a href="{{ route('register') }}">Register</a>
+                            @endauth
+                    </div>
+                @endif
             </div>
         </div>
     </header>
@@ -99,7 +103,32 @@
         </footer>
     </main>
 </div>
-<a href="https://github.com//" target="_blank" id="new-contact" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast">New Contact</a>
+@if(Auth::user())
+<a href="/new" target="_blank" id="new-contact" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast">New Contact</a>
+@endif
 <script src="/js/material.min.js"></script>
+<script>
+    $("#mail").blur(function(){
+        var mail = $("#mail").val();
+        var url = "/exists/" + mail;
+        var patt = new RegExp("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$");
+        var patternMatch = patt.test(mail);
+        if(patternMatch) {
+            $("#loading").removeClass("hidden");
+            $.ajax({
+                    url: url,
+                    success: function (result) {
+                        $("#loading").addClass("hidden");
+                        if (result == "0") {
+                            $("#right").removeClass("hidden");
+                        } else {
+                            $("#wrong").removeClass("hidden");
+                        }
+                    }
+                }
+            );
+        }
+    });
+</script>
 </body>
 </html>

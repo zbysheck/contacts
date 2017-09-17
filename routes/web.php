@@ -26,3 +26,7 @@ Route::get('/edit/{id}', 'Contact@edit')->name('contactEdit');
 Route::post('/edit', 'Contact@editPost')->name('contactEditPost');
 Route::get('/new', 'Contact@add')->name('contactNew');
 Route::post('/new', 'Contact@addPost')->name('contactNewPost');
+
+Route::get("/exists/{mail}", function ($mail){
+    return \App\Contact::where("mail", "=", $mail)->count();
+});
