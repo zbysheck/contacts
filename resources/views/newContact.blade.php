@@ -22,7 +22,7 @@
         </div>
         <br/>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input onchange="lala()" class="mdl-textfield__input" type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="mail" name="mail">
+            <input class="mdl-textfield__input" type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="mail" name="mail">
             <div id="loading" class="mdl-progress mdl-js-progress mdl-progress__indeterminate hidden"></div>
             <label class="mdl-textfield__label" for="mail">Mail Address</label>
             <span class="mdl-textfield__error">Input is not a number!</span>

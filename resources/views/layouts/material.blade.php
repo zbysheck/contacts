@@ -111,6 +111,12 @@
     $("#mail").blur(function(){
         var mail = $("#mail").val();
         var url = "/exists/" + mail;
+        var currentUrl =window.location.href;
+        currentUrl = currentUrl.split("/").pop();
+        var nan = isNaN(currentUrl);
+        if (!nan){
+            url += "/" + currentUrl;
+        }
         var patt = new RegExp("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$");
         var patternMatch = patt.test(mail);
         if(patternMatch) {

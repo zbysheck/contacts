@@ -31,4 +31,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get("/exists/{mail}", function ($mail) {
         return \App\Contact::where("mail", "=", $mail)->count();
     });
+    Route::get("/exists/{mail}/{id}", function ($mail, $id) {
+        return \App\Contact::where("mail", "=", $mail)->where("id", "!=", $id)->count();
+    });
 });
+
+Route::get("/", 'Contact@showList');
