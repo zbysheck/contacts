@@ -21,4 +21,35 @@ class Contact extends Controller
         $contact = \App\Contact::find($id);
         return view("editContact")->with("contact", $contact);
     }
+
+    public function add()
+    {
+        return view("newContact");
+    }
+
+    public function addPost(Request $request)
+    {
+        //var_dump($request->input("name"));die();
+        $contact = new \App\Contact();
+        $contact->name=$request->input("name");
+        $contact->surname=$request->input("surname");
+        $contact->phone=$request->input("phone");
+        $contact->mail=$request->input("mail");
+        $contact->birth=$request->input("birth");
+        $contact->save();
+    }
+
+    public function editPost(Request $request)
+    {
+        //var_dump($request->input("name"));die();
+        $contact = \App\Contact()->find($request->id);
+        $contact->name=$request->input("name");
+        $contact->surname=$request->input("surname");
+        $contact->phone=$request->input("phone");
+        $contact->mail=$request->input("mail");
+        $contact->birth=$request->input("birth");
+        $contact->save();
+    }
+
+
 }
