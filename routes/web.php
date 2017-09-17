@@ -20,3 +20,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/list', 'Contact@showList')->name('contactList');
+
+Route::get('/contact/{id}', 'Contact@single')->name('singleContact');
+Route::get('/edit/{id}', 'Contact@edit')->name('contactEdit');
